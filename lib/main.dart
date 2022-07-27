@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_weather/view/WeatherView.dart';
@@ -22,7 +25,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final testProvider = StateProvider<String>((ref) => "世界线:0.337187");
+// final testProvider = StateProvider<String>((ref) => "世界线:0.337187");
+
+final weatherProvider = StateProvider<dynamic>((ref) {
+  return;
+});
+
+final Dio _dio = Dio();
+
+void getWeather() async {
+  String url = "/v2.5/8ToODtNzsJ94Ygor/121.6544,25.1552/realtime.json";
+  Response response;
+  response = await _dio.get(url);
+  var data = response.data;
+}
 
 class MyHomePage extends ConsumerWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -39,7 +55,14 @@ class MyHomePage extends ConsumerWidget {
             Expanded(
                 flex: 1,
                 child: Center(
-                  child: Text("章贡区"),
+                  child: Text(
+                    "章贡区",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 6.0,
+                    ),
+                  ),
                 )),
             Expanded(flex: 9, child: WeatherView())
           ],

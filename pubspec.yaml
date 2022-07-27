@@ -36,6 +36,9 @@ dependencies:
   #状态管理框架
   flutter_riverpod: ^2.0.0-dev.9
 
+  #定位框架
+  geolocator: ^9.0.1
+
 
 
   # The following adds the Cupertino Icons font to your application.
